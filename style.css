@@ -1,0 +1,105 @@
+ /* EXAMPLE STYLING */
+ body {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     background-color: #0E0E0E;
+     color: #FFFFFF;
+     height: 100vh;
+     font-family: "Bebas Neue", sans-serif;
+     font-weight: 400;
+     font-style: normal;
+     overflow: clip;
+ }
+
+ .head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 3rem;
+ }
+
+ .head img {
+    width: clamp(9.375rem, 8.4821rem + 4.4643vw, 12.5rem);
+ }
+
+ h1 {
+    font-size: clamp(2rem, 1.4286rem + 2.8571vw, 4rem);
+ }
+
+ li {
+     font-size: 1.75rem;
+ }
+ /* END EXAMPLE STYLING */
+
+ 
+ .marquee {
+     --height: 4rem;
+     --gap: 1rem;
+     display: flex;
+     overflow: hidden;
+     user-select: none;
+     gap: var(--gap);    
+     height: var(--height);
+     margin: auto 0;
+ }
+
+ .marquee:before {
+     content: '';
+     position: absolute;
+     height: var(--height);
+     width: 3.25rem;
+     z-index: 1;
+     background: linear-gradient(90deg, #0E0E0E 0%, rgba(35, 32, 32, 0.01) 100%);
+     left: 0;
+ }
+ .marquee:after {
+    content: '';
+    position: absolute;
+    height: var(--height);
+    width: 3.25rem;
+    z-index: 1;
+    background: linear-gradient(-90deg, #0E0E0E 0%, rgba(35, 32, 32, 0.01) 100%);
+    right: 0;
+}
+
+ .marquee-content {
+     flex-shrink: 0;
+     display: flex;
+     justify-content: space-between;
+     min-width: 100%;
+     gap: var(--gap);
+     animation: scroll 20s linear infinite;
+     padding: var(--gap);
+ }
+ 
+
+ ul {
+     list-style: none;
+ }
+
+ li {
+     list-style: none;
+ }
+
+
+ @keyframes scroll {
+     from {
+         transform: translateX(0);
+     }
+
+     to {
+         transform: translateX(calc(-100% - var(--gap)));
+     }
+ }
+
+
+ /* Pause animation when reduced-motion is set */
+ @media (prefers-reduced-motion: reduce) {
+     .marquee__content {
+         animation-play-state: paused !important;
+     }
+ }
